@@ -24,10 +24,10 @@ server:
     max-threads: 800
     uri-encoding: UTF-8
   servlet:
-    context-path: /music-back
+    context-path: /page-back
 logging:
   config: classpath:logback-config.xml
-  file: logs/music-starchild-back.log
+  file: logs/page-back.log
 
 # 自定义数据库
 datasource:

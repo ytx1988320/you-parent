@@ -19,6 +19,7 @@ public class PagedRequest<T> extends BaseRequest {
     public static final int DEFAULT_CURRENT_PAGE = 1;
     public static final int DEFAULT_PAGE_SIZE = 10;
 
+    private T data;
     /**
      * 当前页 默认第1页
      */
@@ -72,5 +73,11 @@ public class PagedRequest<T> extends BaseRequest {
         return currentPage;
     }
 
+    public T getData() {
+        return data;
+    }
 
+    public void setData(T data) {
+        this.data = data;
+    }
 }

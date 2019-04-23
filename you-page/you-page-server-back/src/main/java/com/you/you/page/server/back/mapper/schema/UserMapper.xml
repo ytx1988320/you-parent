@@ -23,6 +23,27 @@
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="auth_time" jdbcType="TIMESTAMP" property="authTime" />
   </resultMap>
+  <resultMap id="SearchResultMap" type="com.you.you.page.common.dto.vo.back.user.UserResultDto">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="weichat_id" jdbcType="VARCHAR" property="weichatId" />
+    <result column="nickname" jdbcType="VARCHAR" property="nickname" />
+    <result column="user_image" jdbcType="VARCHAR" property="userImage" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="auth_level" jdbcType="INTEGER" property="authLevel" />
+    <result column="user_phone" jdbcType="VARCHAR" property="userPhone" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="sex" jdbcType="INTEGER" property="sex" />
+    <result column="position_detail" jdbcType="VARCHAR" property="positionDetail" />
+    <result column="position_province" jdbcType="INTEGER" property="positionProvince" />
+    <result column="position_city" jdbcType="INTEGER" property="positionCity" />
+    <result column="child_name" jdbcType="VARCHAR" property="childName" />
+    <result column="child_age" jdbcType="INTEGER" property="childAge" />
+    <result column="child_sex" jdbcType="INTEGER" property="childSex" />
+    <result column="capital" jdbcType="INTEGER" property="capital" />
+    <result column="frozen_capital" jdbcType="INTEGER" property="frozenCapital" />
+    <result column="visible" jdbcType="INTEGER" property="visible" />
+    <result column="create_time" property="createTime" />
+  </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.you.you.page.server.back.dao.User">
     <result column="remark" jdbcType="LONGVARCHAR" property="remark" />
   </resultMap>
@@ -534,4 +555,15 @@
       auth_time = #{authTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="selectList" parameterType="com.you.you.page.server.back.dao.User" resultMap="SearchResultMap">
+    select
+    <include refid="Base_Column_List"/>,
+    <include refid="Blob_Column_List"/>
+    from t_user
+    <where>
+      <if test="nickname != null and nickname !=''">
+        and nickname = #{nickname,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </select>
 </mapper>

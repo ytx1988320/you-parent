@@ -32,7 +32,7 @@ import java.util.Properties;
  */
 @Configuration
 @EnableTransactionManagement
-@MapperScan(basePackages= {"hk.reco.music.starchild.server.back.mapper"})
+@MapperScan(basePackages= {"com.you.you.page.server.back.mapper"})
 public class MybatisConfig implements TransactionManagementConfigurer {
 
     private final DataSource dataSource;
@@ -49,7 +49,7 @@ public class MybatisConfig implements TransactionManagementConfigurer {
     public SqlSessionFactory sqlSessionFactory() {
         SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
         bean.setDataSource(dataSource);
-        bean.setTypeAliasesPackage("hk.reco.music.starchild.server.dao");
+        bean.setTypeAliasesPackage("com.you.you.page.server.dao");
 
         //分页插件
         PageHelper pageHelper = new PageHelper();

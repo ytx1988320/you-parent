@@ -1,5 +1,6 @@
 package com.you.you.page.server.back.mapper;
 
+import com.you.you.page.common.dto.vo.back.user.UserResultDto;
 import com.you.you.page.server.back.dao.User;
 import com.you.you.page.server.back.dao.UserExample;
 import java.util.List;
@@ -33,4 +34,6 @@ public interface UserMapper {
     int updateByPrimaryKeyWithBLOBs(User record);
 
     int updateByPrimaryKey(User record);
+
+    List<UserResultDto> selectList(User user);
 }

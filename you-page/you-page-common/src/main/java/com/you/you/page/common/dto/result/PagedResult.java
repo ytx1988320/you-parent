@@ -102,7 +102,7 @@ public class PagedResult<T> extends Result<List<T>> {
             this.pagedResult = new PagedResult<T>();
         }
 
-        public static <T> Builder<T> build(PagedRequest<T> request) {
+        public static <T> Builder build(PagedRequest request) {
             return new Builder<T>()
                     .currentPage(request.getCurrentPage())
                     .pageSize(request.getPageSize());

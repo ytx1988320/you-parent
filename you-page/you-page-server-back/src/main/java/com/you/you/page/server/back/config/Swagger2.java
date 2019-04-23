@@ -21,7 +21,6 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  */
 @Configuration
 @EnableSwagger2
-@Profile("test")
 public class Swagger2 {
 
     @Value("server.port")
@@ -35,7 +34,7 @@ public class Swagger2 {
 //                .enable(true)
                 .apiInfo(apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("hk.reco.music.starchild.server.back.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.you.you.page.server.back.controller"))
                 .paths(PathSelectors.any())
                 .build();
     }
