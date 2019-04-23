@@ -1,0 +1,537 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.you.you.page.server.back.mapper.UserMapper">
+  <resultMap id="BaseResultMap" type="com.you.you.page.server.back.dao.User">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="weichat_id" jdbcType="VARCHAR" property="weichatId" />
+    <result column="nickname" jdbcType="VARCHAR" property="nickname" />
+    <result column="user_image" jdbcType="VARCHAR" property="userImage" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="auth_level" jdbcType="INTEGER" property="authLevel" />
+    <result column="user_phone" jdbcType="VARCHAR" property="userPhone" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="sex" jdbcType="INTEGER" property="sex" />
+    <result column="position_province" jdbcType="INTEGER" property="positionProvince" />
+    <result column="position_city" jdbcType="INTEGER" property="positionCity" />
+    <result column="position_detail" jdbcType="VARCHAR" property="positionDetail" />
+    <result column="child_name" jdbcType="VARCHAR" property="childName" />
+    <result column="child_age" jdbcType="INTEGER" property="childAge" />
+    <result column="child_sex" jdbcType="INTEGER" property="childSex" />
+    <result column="capital" jdbcType="INTEGER" property="capital" />
+    <result column="frozen_capital" jdbcType="INTEGER" property="frozenCapital" />
+    <result column="visible" jdbcType="INTEGER" property="visible" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="auth_time" jdbcType="TIMESTAMP" property="authTime" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.you.you.page.server.back.dao.User">
+    <result column="remark" jdbcType="LONGVARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, weichat_id, nickname, user_image, `type`, auth_level, user_phone, `name`, sex, 
+    position_province, position_city, position_detail, child_name, child_age, child_sex, 
+    capital, frozen_capital, visible, create_time, auth_time
+  </sql>
+  <sql id="Blob_Column_List">
+    remark
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.you.you.page.server.back.dao.UserExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.you.you.page.server.back.dao.UserExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from t_user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_user
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_user
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.you.you.page.server.back.dao.UserExample">
+    delete from t_user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.you.you.page.server.back.dao.User">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into t_user (weichat_id, nickname, user_image, 
+      `type`, auth_level, user_phone, 
+      `name`, sex, position_province, 
+      position_city, position_detail, child_name, 
+      child_age, child_sex, capital, 
+      frozen_capital, visible, create_time, 
+      auth_time, remark)
+    values (#{weichatId,jdbcType=VARCHAR}, #{nickname,jdbcType=VARCHAR}, #{userImage,jdbcType=VARCHAR}, 
+      #{type,jdbcType=INTEGER}, #{authLevel,jdbcType=INTEGER}, #{userPhone,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{sex,jdbcType=INTEGER}, #{positionProvince,jdbcType=INTEGER}, 
+      #{positionCity,jdbcType=INTEGER}, #{positionDetail,jdbcType=VARCHAR}, #{childName,jdbcType=VARCHAR}, 
+      #{childAge,jdbcType=INTEGER}, #{childSex,jdbcType=INTEGER}, #{capital,jdbcType=INTEGER}, 
+      #{frozenCapital,jdbcType=INTEGER}, #{visible,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{authTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.you.you.page.server.back.dao.User">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into t_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="weichatId != null">
+        weichat_id,
+      </if>
+      <if test="nickname != null">
+        nickname,
+      </if>
+      <if test="userImage != null">
+        user_image,
+      </if>
+      <if test="type != null">
+        `type`,
+      </if>
+      <if test="authLevel != null">
+        auth_level,
+      </if>
+      <if test="userPhone != null">
+        user_phone,
+      </if>
+      <if test="name != null">
+        `name`,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="positionProvince != null">
+        position_province,
+      </if>
+      <if test="positionCity != null">
+        position_city,
+      </if>
+      <if test="positionDetail != null">
+        position_detail,
+      </if>
+      <if test="childName != null">
+        child_name,
+      </if>
+      <if test="childAge != null">
+        child_age,
+      </if>
+      <if test="childSex != null">
+        child_sex,
+      </if>
+      <if test="capital != null">
+        capital,
+      </if>
+      <if test="frozenCapital != null">
+        frozen_capital,
+      </if>
+      <if test="visible != null">
+        visible,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="authTime != null">
+        auth_time,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="weichatId != null">
+        #{weichatId,jdbcType=VARCHAR},
+      </if>
+      <if test="nickname != null">
+        #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="userImage != null">
+        #{userImage,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="authLevel != null">
+        #{authLevel,jdbcType=INTEGER},
+      </if>
+      <if test="userPhone != null">
+        #{userPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="positionProvince != null">
+        #{positionProvince,jdbcType=INTEGER},
+      </if>
+      <if test="positionCity != null">
+        #{positionCity,jdbcType=INTEGER},
+      </if>
+      <if test="positionDetail != null">
+        #{positionDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="childName != null">
+        #{childName,jdbcType=VARCHAR},
+      </if>
+      <if test="childAge != null">
+        #{childAge,jdbcType=INTEGER},
+      </if>
+      <if test="childSex != null">
+        #{childSex,jdbcType=INTEGER},
+      </if>
+      <if test="capital != null">
+        #{capital,jdbcType=INTEGER},
+      </if>
+      <if test="frozenCapital != null">
+        #{frozenCapital,jdbcType=INTEGER},
+      </if>
+      <if test="visible != null">
+        #{visible,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="authTime != null">
+        #{authTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.you.you.page.server.back.dao.UserExample" resultType="java.lang.Long">
+    select count(*) from t_user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update t_user
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.weichatId != null">
+        weichat_id = #{record.weichatId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nickname != null">
+        nickname = #{record.nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userImage != null">
+        user_image = #{record.userImage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.type != null">
+        `type` = #{record.type,jdbcType=INTEGER},
+      </if>
+      <if test="record.authLevel != null">
+        auth_level = #{record.authLevel,jdbcType=INTEGER},
+      </if>
+      <if test="record.userPhone != null">
+        user_phone = #{record.userPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null">
+        `name` = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sex != null">
+        sex = #{record.sex,jdbcType=INTEGER},
+      </if>
+      <if test="record.positionProvince != null">
+        position_province = #{record.positionProvince,jdbcType=INTEGER},
+      </if>
+      <if test="record.positionCity != null">
+        position_city = #{record.positionCity,jdbcType=INTEGER},
+      </if>
+      <if test="record.positionDetail != null">
+        position_detail = #{record.positionDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.childName != null">
+        child_name = #{record.childName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.childAge != null">
+        child_age = #{record.childAge,jdbcType=INTEGER},
+      </if>
+      <if test="record.childSex != null">
+        child_sex = #{record.childSex,jdbcType=INTEGER},
+      </if>
+      <if test="record.capital != null">
+        capital = #{record.capital,jdbcType=INTEGER},
+      </if>
+      <if test="record.frozenCapital != null">
+        frozen_capital = #{record.frozenCapital,jdbcType=INTEGER},
+      </if>
+      <if test="record.visible != null">
+        visible = #{record.visible,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.authTime != null">
+        auth_time = #{record.authTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.remark != null">
+        remark = #{record.remark,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update t_user
+    set id = #{record.id,jdbcType=INTEGER},
+      weichat_id = #{record.weichatId,jdbcType=VARCHAR},
+      nickname = #{record.nickname,jdbcType=VARCHAR},
+      user_image = #{record.userImage,jdbcType=VARCHAR},
+      `type` = #{record.type,jdbcType=INTEGER},
+      auth_level = #{record.authLevel,jdbcType=INTEGER},
+      user_phone = #{record.userPhone,jdbcType=VARCHAR},
+      `name` = #{record.name,jdbcType=VARCHAR},
+      sex = #{record.sex,jdbcType=INTEGER},
+      position_province = #{record.positionProvince,jdbcType=INTEGER},
+      position_city = #{record.positionCity,jdbcType=INTEGER},
+      position_detail = #{record.positionDetail,jdbcType=VARCHAR},
+      child_name = #{record.childName,jdbcType=VARCHAR},
+      child_age = #{record.childAge,jdbcType=INTEGER},
+      child_sex = #{record.childSex,jdbcType=INTEGER},
+      capital = #{record.capital,jdbcType=INTEGER},
+      frozen_capital = #{record.frozenCapital,jdbcType=INTEGER},
+      visible = #{record.visible,jdbcType=INTEGER},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      auth_time = #{record.authTime,jdbcType=TIMESTAMP},
+      remark = #{record.remark,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update t_user
+    set id = #{record.id,jdbcType=INTEGER},
+      weichat_id = #{record.weichatId,jdbcType=VARCHAR},
+      nickname = #{record.nickname,jdbcType=VARCHAR},
+      user_image = #{record.userImage,jdbcType=VARCHAR},
+      `type` = #{record.type,jdbcType=INTEGER},
+      auth_level = #{record.authLevel,jdbcType=INTEGER},
+      user_phone = #{record.userPhone,jdbcType=VARCHAR},
+      `name` = #{record.name,jdbcType=VARCHAR},
+      sex = #{record.sex,jdbcType=INTEGER},
+      position_province = #{record.positionProvince,jdbcType=INTEGER},
+      position_city = #{record.positionCity,jdbcType=INTEGER},
+      position_detail = #{record.positionDetail,jdbcType=VARCHAR},
+      child_name = #{record.childName,jdbcType=VARCHAR},
+      child_age = #{record.childAge,jdbcType=INTEGER},
+      child_sex = #{record.childSex,jdbcType=INTEGER},
+      capital = #{record.capital,jdbcType=INTEGER},
+      frozen_capital = #{record.frozenCapital,jdbcType=INTEGER},
+      visible = #{record.visible,jdbcType=INTEGER},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      auth_time = #{record.authTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.you.you.page.server.back.dao.User">
+    update t_user
+    <set>
+      <if test="weichatId != null">
+        weichat_id = #{weichatId,jdbcType=VARCHAR},
+      </if>
+      <if test="nickname != null">
+        nickname = #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="userImage != null">
+        user_image = #{userImage,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        `type` = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="authLevel != null">
+        auth_level = #{authLevel,jdbcType=INTEGER},
+      </if>
+      <if test="userPhone != null">
+        user_phone = #{userPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="positionProvince != null">
+        position_province = #{positionProvince,jdbcType=INTEGER},
+      </if>
+      <if test="positionCity != null">
+        position_city = #{positionCity,jdbcType=INTEGER},
+      </if>
+      <if test="positionDetail != null">
+        position_detail = #{positionDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="childName != null">
+        child_name = #{childName,jdbcType=VARCHAR},
+      </if>
+      <if test="childAge != null">
+        child_age = #{childAge,jdbcType=INTEGER},
+      </if>
+      <if test="childSex != null">
+        child_sex = #{childSex,jdbcType=INTEGER},
+      </if>
+      <if test="capital != null">
+        capital = #{capital,jdbcType=INTEGER},
+      </if>
+      <if test="frozenCapital != null">
+        frozen_capital = #{frozenCapital,jdbcType=INTEGER},
+      </if>
+      <if test="visible != null">
+        visible = #{visible,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="authTime != null">
+        auth_time = #{authTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.you.you.page.server.back.dao.User">
+    update t_user
+    set weichat_id = #{weichatId,jdbcType=VARCHAR},
+      nickname = #{nickname,jdbcType=VARCHAR},
+      user_image = #{userImage,jdbcType=VARCHAR},
+      `type` = #{type,jdbcType=INTEGER},
+      auth_level = #{authLevel,jdbcType=INTEGER},
+      user_phone = #{userPhone,jdbcType=VARCHAR},
+      `name` = #{name,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=INTEGER},
+      position_province = #{positionProvince,jdbcType=INTEGER},
+      position_city = #{positionCity,jdbcType=INTEGER},
+      position_detail = #{positionDetail,jdbcType=VARCHAR},
+      child_name = #{childName,jdbcType=VARCHAR},
+      child_age = #{childAge,jdbcType=INTEGER},
+      child_sex = #{childSex,jdbcType=INTEGER},
+      capital = #{capital,jdbcType=INTEGER},
+      frozen_capital = #{frozenCapital,jdbcType=INTEGER},
+      visible = #{visible,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      auth_time = #{authTime,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.you.you.page.server.back.dao.User">
+    update t_user
+    set weichat_id = #{weichatId,jdbcType=VARCHAR},
+      nickname = #{nickname,jdbcType=VARCHAR},
+      user_image = #{userImage,jdbcType=VARCHAR},
+      `type` = #{type,jdbcType=INTEGER},
+      auth_level = #{authLevel,jdbcType=INTEGER},
+      user_phone = #{userPhone,jdbcType=VARCHAR},
+      `name` = #{name,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=INTEGER},
+      position_province = #{positionProvince,jdbcType=INTEGER},
+      position_city = #{positionCity,jdbcType=INTEGER},
+      position_detail = #{positionDetail,jdbcType=VARCHAR},
+      child_name = #{childName,jdbcType=VARCHAR},
+      child_age = #{childAge,jdbcType=INTEGER},
+      child_sex = #{childSex,jdbcType=INTEGER},
+      capital = #{capital,jdbcType=INTEGER},
+      frozen_capital = #{frozenCapital,jdbcType=INTEGER},
+      visible = #{visible,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      auth_time = #{authTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
