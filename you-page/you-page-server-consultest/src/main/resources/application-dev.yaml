@@ -7,7 +7,7 @@ spring:
       max-request-size: 20MB
   cloud:
     consul:
-      host: 106.13.60.183
+      host: 127.0.0.1
       port: 8500
       discovery:
         register: false
@@ -21,7 +21,6 @@ server:
 logging:
   config: classpath:logback-config.xml
   file: logs/page-consul.log
-
 
 jwt:
   # 加密秘钥

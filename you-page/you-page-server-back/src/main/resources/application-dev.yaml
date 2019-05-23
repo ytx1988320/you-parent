@@ -20,11 +20,13 @@ spring:
       max-request-size: 20MB
   cloud:
     consul:
-      host: 106.13.60.183
+      host: 127.0.0.1
       port: 8500
       discovery:
         service-name: ${spring.application.name}
         management-tags: version=1.0,author=you
+        health-check-path: /page-back/actuator/health
+        instance-id: ${spring.application.name}-8080
 server:
   port: 8080
   tomcat:

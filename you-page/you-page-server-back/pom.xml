@@ -147,7 +147,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
                     <!-- 工程主入口-->
-                    <mainClass>hk.reco.music.starchild.server.back.Application</mainClass>
+                    <mainClass>com.you.you.page.server.back.Application</mainClass>
                 </configuration>
                 <executions>
                     <execution>
