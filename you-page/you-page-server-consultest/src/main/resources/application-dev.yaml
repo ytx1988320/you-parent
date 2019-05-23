@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: you-page-server-consultest
+  servlet:
+    multipart:
+      max-file-size: 20MB
+      max-request-size: 20MB
+  cloud:
+    consul:
+      host: 106.13.60.183
+      port: 8500
+      discovery:
+        register: false
+server:
+  port: 18080
+  tomcat:
+    max-threads: 800
+    uri-encoding: UTF-8
+  servlet:
+    context-path: /page-consul
+logging:
+  config: classpath:logback-config.xml
+  file: logs/page-consul.log
+
+
+jwt:
+  # 加密秘钥
+  secret: f4e2e52034348f86b67cde581c0f9eb5
+  # token有效时长，1天，单位秒
+  expire: 86400
+  header: token
