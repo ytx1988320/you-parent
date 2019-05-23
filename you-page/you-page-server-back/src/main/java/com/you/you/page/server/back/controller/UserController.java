@@ -14,7 +14,6 @@ import com.you.you.page.common.dto.result.ResultCode;
 import com.you.you.page.common.dto.vo.back.user.UserResultDto;
 import com.you.you.page.common.dto.vo.back.user.UserSearchDto;
 import com.you.you.page.common.util.ValidatorUtils;
-import com.you.you.page.server.back.dao.User;
 import com.you.you.page.server.back.service.IUserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

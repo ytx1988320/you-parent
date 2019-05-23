@@ -4,7 +4,7 @@ spring:
   redis:
     open: false  # 是否开启redis缓存  true开启   false关闭
     database: 0
-    host: localhost
+    host: 192.168.3.10
     port: 6379
     password: 123456    # 密码（默认为空）
     timeout: 6000ms  # 连接超时时长（毫秒）
@@ -18,6 +18,13 @@ spring:
     multipart:
       max-file-size: 20MB
       max-request-size: 20MB
+  cloud:
+    consul:
+      host: 106.13.60.183
+      port: 8500
+      discovery:
+        service-name: ${spring.application.name}
+        management-tags: version=1.0,author=you
 server:
   port: 8080
   tomcat:

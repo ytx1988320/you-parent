@@ -1,9 +1,10 @@
 package com.you.you.page.server.back.mapper;
 
 import com.you.you.page.common.dto.vo.back.user.UserResultDto;
+import java.util.List;
+
 import com.you.you.page.server.back.dao.User;
 import com.you.you.page.server.back.dao.UserExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface UserMapper {

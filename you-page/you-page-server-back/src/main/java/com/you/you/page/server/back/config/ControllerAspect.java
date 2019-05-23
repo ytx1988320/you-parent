@@ -10,8 +10,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
-import java.lang.reflect.Field;
-
 /**
  * controller调用切面
  * 打印调用参数及返回结果
@@ -27,7 +25,7 @@ public class ControllerAspect {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    @Pointcut("execution(public * com.you.you.page.server.back.controller..*.*(..))")
+    @Pointcut("execution(public * com.you.you.page.server.consul.controller..*.*(..))")
     public void executeService() {
     }
 

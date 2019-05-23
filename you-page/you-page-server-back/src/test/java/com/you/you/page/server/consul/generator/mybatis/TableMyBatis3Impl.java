@@ -1,4 +1,4 @@
-package com.you.you.page.server.back.generator.mybatis;
+package com.you.you.page.server.consul.generator.mybatis;
 
 import org.mybatis.generator.api.GeneratedXmlFile;
 import org.mybatis.generator.api.dom.xml.Document;

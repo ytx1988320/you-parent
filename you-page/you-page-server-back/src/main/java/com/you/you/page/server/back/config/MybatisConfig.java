@@ -9,7 +9,6 @@ import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.core.io.support.ResourcePatternResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
@@ -18,7 +17,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.TransactionManagementConfigurer;
 
 import javax.sql.DataSource;
-import java.util.Arrays;
 import java.util.Properties;
 
 /**
@@ -49,7 +47,7 @@ public class MybatisConfig implements TransactionManagementConfigurer {
     public SqlSessionFactory sqlSessionFactory() {
         SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
         bean.setDataSource(dataSource);
-        bean.setTypeAliasesPackage("com.you.you.page.server.dao");
+        bean.setTypeAliasesPackage("com.you.you.page.server.back.dao");
 
         //分页插件
         PageHelper pageHelper = new PageHelper();
@@ -78,14 +76,5 @@ public class MybatisConfig implements TransactionManagementConfigurer {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-    }
-
-    public static void main(String[] args) {
-        int[] a =new int[]{1,2,3,4};
-        int[] b =new int[]{6,7,8,9,10};
-        int[] c =new int[a.length+b.length];
-        System.arraycopy(a,0,c,0,a.length);
-        System.arraycopy(b,0,c,a.length,b.length);
-        System.out.println(Arrays.toString(c));
     }
 }

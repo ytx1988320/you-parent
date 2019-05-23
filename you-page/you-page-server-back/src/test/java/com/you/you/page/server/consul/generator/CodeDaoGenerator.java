@@ -1,4 +1,4 @@
-package com.you.you.page.server.back.generator;
+package com.you.you.page.server.consul.generator;
 
 import com.google.common.base.CaseFormat;
 import com.you.you.page.common.consts.ProjectConstant;

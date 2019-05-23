@@ -46,5 +46,6 @@
     <modules>
         <module>you-page-server-back</module>
         <module>you-page-common</module>
+        <module>you-page-server-consultest</module>
     </modules>
 </project>
